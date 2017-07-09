@@ -20,11 +20,11 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = ( ('You can modify those links in your config file', '#'),)
+LINKS = ( ('', '#'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('Twitter', 'https://twitter.com/titantins'),
+          ('Github', 'https://github.com/Sammers21'),)
 
 DEFAULT_PAGINATION = 10
 
