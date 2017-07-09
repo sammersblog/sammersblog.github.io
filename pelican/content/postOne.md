@@ -20,8 +20,7 @@ As I sad, Vert.x seeks to create its own tools to work with different protocols.
 
 The second prerequisite is that Vert.x project already has [own MQTT-server](https://github.com/vert-x3/vertx-mqtt-server). Why it should not have a client one?
 
-One more fact connected with ideologies. They are pretty similar. For example, Vert.x's Event Bus uses the same publish/subscribe model for communication between verticles.
-
+One more fact connected with ideologies. They are pretty similar. For example, Vert.x's Event Bus, as in MQTT, uses the same publish/subscribe model, but for communication between verticles.
 ### First results
 
 I and my mentor [Paolo](https://github.com/ppatierno) had been working on the initial implementation of vertx-mqtt-client for a month and now you can see first results [here](https://github.com/vert-x3/vertx-mqtt-client). In addition to the source files, you can find a documentation there. 

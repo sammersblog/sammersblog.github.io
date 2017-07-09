@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = u'Sammers'
-SITENAME = u""
+AUTHOR = u'Sammers21'
+SITENAME = u"@Sammers21"
 SITEURL = ''
 
 PATH = 'content'
@@ -20,7 +20,7 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = ( ('', '#'),)
+LINKS = ()
 
 # Social widget
 SOCIAL = (('Twitter', 'https://twitter.com/titantins'),
