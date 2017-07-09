@@ -1,5 +1,5 @@
 Title: Introduction to vertx-mqtt-client
-Date: 8 July 2017
+Date: 9 July 2017
 Category: GSoC
 
 # Intro 
