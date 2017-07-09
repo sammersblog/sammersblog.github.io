@@ -40,9 +40,9 @@
 <p>Traditionally, there are many GSoC folks who have the own blog about their GSoC experience. So, maybe I'm late but, think that just don't really matter. What is really matter is to show the project and its idea.</p>
 <p>The project I'm working on is an MQTT client for Vert.x JVM toolkit. It designed in Vert.x ideology, which also means, that all operations are non blocking and you, as a user, can be notified when some event happens.</p>
 <p>In this article, i would like to give you a quick overview of Vertx, MQTT and how my project catches these things together.</p>
-<h4>What is Vertx</h4>
-<p>Basically, Vertx was created in 2011 by <a href="https://github.com/purplefox">Tim Fox</a>. Today it positioned as a tool-kit for building reactive applications on the JVM. But bad thing is that vert.x reactive ideology radically different from common procedural style and standard Java library design. To make vert.x comfortable and convenient to use we should rewrite a significant part of standard library. That also means that we should have own primitives for working with different protocols and in many different areas otherwise, we will not take advantage of vert.x usage</p>
-<h4>What is MQTT</h4>
+<h4>What is Vertx?</h4>
+<p>Basically, Vertx was created in 2011 by <a href="https://github.com/purplefox">Tim Fox</a>. Today it positioned as a tool-kit for building reactive applications on the JVM. But bad thing is that vert.x reactive ideology radically different from common procedural style and standard Java library design. To make vert.x comfortable and convenient to use we should rewrite a significant part of standard library. That also means that we should have own primitives for working with different protocols and in many different areas otherwise, we will not take advantage of Vert.x usage.</p>
+<h4>What is MQTT?</h4>
 <p><a href="http://mqtt.org/news">MQTT</a> is an extremely lightweight publish/subscribe messaging transport protocol designed for IoT needs. It is useful for connections with remote locations where a small code footprint is required and/or network bandwidth is at a premium.  </p>
 <h3>Why we must have them together?</h3>
 <p>As I sad, Vert.x seeks to create its own tools to work with different protocols. MQTT is not an exception.</p>

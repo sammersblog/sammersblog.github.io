@@ -9,10 +9,10 @@ The project I'm working on is an MQTT client for Vert.x JVM toolkit. It designed
 
 In this article, i would like to give you a quick overview of Vertx, MQTT and how my project catches these things together.
 
-#### What is Vertx
-Basically, Vertx was created in 2011 by [Tim Fox](https://github.com/purplefox). Today it positioned as a tool-kit for building reactive applications on the JVM. But bad thing is that vert.x reactive ideology radically different from common procedural style and standard Java library design. To make vert.x comfortable and convenient to use we should rewrite a significant part of standard library. That also means that we should have own primitives for working with different protocols and in many different areas otherwise, we will not take advantage of vert.x usage
+#### What is Vertx?
+Basically, Vertx was created in 2011 by [Tim Fox](https://github.com/purplefox). Today it positioned as a tool-kit for building reactive applications on the JVM. But bad thing is that vert.x reactive ideology radically different from common procedural style and standard Java library design. To make vert.x comfortable and convenient to use we should rewrite a significant part of standard library. That also means that we should have own primitives for working with different protocols and in many different areas otherwise, we will not take advantage of Vert.x usage.
 
-#### What is MQTT
+#### What is MQTT?
 [MQTT](http://mqtt.org/news) is an extremely lightweight publish/subscribe messaging transport protocol designed for IoT needs. It is useful for connections with remote locations where a small code footprint is required and/or network bandwidth is at a premium.  
 
 ### Why we must have them together?
