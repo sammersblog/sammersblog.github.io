@@ -8,9 +8,9 @@ SITEURL = ''
 
 PATH = 'content'
 
-TIMEZONE = 'Europe/Moscow'
+TIMEZONE = 'Europe/Paris'
 
-DEFAULT_LANG = u'en'
+DEFAULT_LANG = u'en_US'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -27,6 +27,13 @@ SOCIAL = (('Twitter', 'https://twitter.com/titantins'),
           ('Github', 'https://github.com/Sammers21'),)
 
 DEFAULT_PAGINATION = 10
+
+DATE_FORMATS = {
+    'en': '%a, %d %b %Y'
+}
+LOCALE = ('usa',   # On Windows
+    'en_US',    # On Unix/Linux
+    )
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
