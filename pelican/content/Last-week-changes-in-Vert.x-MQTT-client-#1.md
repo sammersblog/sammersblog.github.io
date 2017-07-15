@@ -8,7 +8,7 @@ In this post, I will just inform you about things happened last week in Vert.x M
 
 # New NetClient API
 
-First thing is about changes in the internal structure of MQTT client. The client itself based on NetClient and any changes in NetClient will cause the similar ones in MQTT client. So last changes were about making it able to handle arbitrary messages and exposing fewer details to API consumer. As a result, MQTT client was [refactored] and now it uses new API.
+First thing is about changes in the internal structure of MQTT client. The client itself based on NetClient and any changes in NetClient will cause the similar ones in MQTT client. So, last changes were about making it able to handle arbitrary messages, and exposing fewer details to API consumers. As a result, MQTT client was refactored]and now it uses new API.
 
 ##### Here changes in Vert.x core is:
 
@@ -54,9 +54,9 @@ The last, but not least one for today is handling QoS=1 and 2 PUBLISH messages. 
 
 ![image](https://user-images.githubusercontent.com/16746106/28243056-893190be-69c6-11e7-95ea-556aea29a634.png)
 
-So the PR for that was created 14 days ago and since then it was rewritten 3 times. The main complexity is that handling of inbound and outbound messages should be lightweight enough. It was not so when I had been implemented that second time. It was based on Vert.x timers. So it is predictable that with growing amount of publishing sessions the client's verticle will just handle a lot of times without doing anything else.
+So, the PR for that was created 14 days ago and since then, it was rewritten 3 times. The main complexity is that handling of inbound and outbound messages should be lightweight enough. It was not so when I had been implemented that second time. It was based on Vert.x timers. So, it is predictable that with growing amount of publishing sessions the client's verticle will just handle a lot of times without doing anything else.
 
-A current implementation of the issue is approach called "in flight queue". This approach takes advantage of message ordering granted by MQTT 3.1.1 protocol.
+A current implementation of the issue used approach called "in flight queue". This approach takes advantage of message ordering granted by MQTT 3.1.1 protocol.
 
 ##### More about message ordering:
 
