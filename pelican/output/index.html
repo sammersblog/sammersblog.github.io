@@ -20,7 +20,32 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/introduction-to-vertx-mqtt-client.html">Introduction to vertx-mqtt-client</a></h1>
+                    <h1 class="entry-title"><a href="/last-week-changes-in-vertx-mqtt-client-1.html">Last week changes in Vert.x MQTT client #1</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2017-07-14T00:00:00+02:00">
+                Published: Fri 14 July 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/sammers21.html">Sammers21</a>
+        </address>
+<p>In <a href="/category/gsoc.html">GSoC</a>.</p>
+
+</footer><!-- /.post-info --><p>In this post i will just inform you about things happened last week in Vert.x MQTT client.</p>
+<p>First thing is about </p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/introduction-to-vertx-mqtt-client.html" rel="bookmark"
+                           title="Permalink to Introduction to vertx-mqtt-client">Introduction to vertx-mqtt-client</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2017-07-09T00:00:00+02:00">
                 Published: Sun 09 July 2017
@@ -31,27 +56,12 @@
         </address>
 <p>In <a href="/category/gsoc.html">GSoC</a>.</p>
 
-</footer><!-- /.post-info --><h1>Intro</h1>
-<p>Traditionally, there are many GSoC folks who have the own blog about their GSoC experience. So, maybe I'm late but, think that just don't really matter. What is really matter is to show the project and its idea.</p>
-<p>The project I'm working on is an MQTT client for Vert.x JVM toolkit. It designed in Vert.x ideology, which also means, that all operations are non blocking and you, as a user, can be notified when some event happens.</p>
-<p>In this article, i would like to give you a quick overview of Vertx, MQTT and how my project catches these things together.</p>
-<h4>What is Vertx?</h4>
-<p>Basically, Vertx was created in 2011 by <a href="https://github.com/purplefox">Tim Fox</a>. Today it positioned as a tool-kit for building reactive applications on the JVM. But bad thing is that vert.x reactive ideology radically different from common procedural style and standard Java library design. To make vert.x comfortable and convenient to use we should rewrite a significant part of standard library. That also means that we should have own primitives for working with different protocols and in many different areas otherwise, we will not take advantage of Vert.x usage.</p>
-<h4>What is MQTT?</h4>
-<p><a href="http://mqtt.org/news">MQTT</a> is an extremely lightweight publish/subscribe messaging transport protocol designed for IoT needs. It is useful for connections with remote locations where a small code footprint is required and/or network bandwidth is at a premium.  </p>
-<h3>Why we must have them together?</h3>
-<p>As I sad, Vert.x seeks to create its own tools to work with different protocols. MQTT is not an exception.</p>
-<p>The second prerequisite is that Vert.x project already has <a href="https://github.com/vert-x3/vertx-mqtt-server">own MQTT-server</a>. Why it should not have a client one?</p>
-<p>One more fact connected with ideologies. They are pretty similar. For example, Vert.x's Event Bus, as in MQTT, uses the same publish/subscribe model, but for communication between verticles.</p>
-<h3>First results</h3>
-<p>I and my mentor <a href="https://github.com/ppatierno">Paolo</a> had been working on the initial implementation of vertx-mqtt-client for a month and now you can see first results <a href="https://github.com/vert-x3/vertx-mqtt-client">here</a>. In addition to the source files, you can find a documentation there. </p>
-<p>The next my blog posts will be dedicated to the project, its features and performance. Also, one day I will make a couple of tutorials and provide a real examples with live brokers.</p>
-<p>Cheers!</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <h1>Intro</h1>
+<p>I am an GSoC 2017 student and the project I'm working on is an MQTT client for Vert.x JVM toolkit. It designed in Vert.x ideology, which also means, that all operations are non blocking and you, as a user, can be notified when some event happens.</p>
+<p>In …</p>
+                <a class="readmore" href="/introduction-to-vertx-mqtt-client.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
