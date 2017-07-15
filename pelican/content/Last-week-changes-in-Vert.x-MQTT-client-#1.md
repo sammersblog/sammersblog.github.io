@@ -23,7 +23,7 @@ https://github.com/vert-x3/vertx-mqtt-client/pull/14
 https://github.com/vert-x3/vertx-mqtt-server/pull/29
 
 # Topic Names and Topic Filters validation
-Another thing is connected with topic validation when sending [PUBLISH](http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/csprd02/mqtt-v3.1.1-csprd02.html#_Toc385349773) or [SUBSCRIBE](http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/csprd02/mqtt-v3.1.1-csprd02.html#_Toc385349799) MQTT packet. Basically, the single and multi-level wildcard characters MUST NOT be used within a Topic Name (when sending [PUBLISH](http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/csprd02/mqtt-v3.1.1-csprd02.html#_Toc385349773)). Additionally, Topic Name should not contain null character (Unicode U+0000).
+Another thing connected with topic validation when sending [PUBLISH](http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/csprd02/mqtt-v3.1.1-csprd02.html#_Toc385349773) or [SUBSCRIBE](http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/csprd02/mqtt-v3.1.1-csprd02.html#_Toc385349799) MQTT packet. Basically, the single and multi-level wildcard characters MUST NOT be used within a Topic Name (when sending [PUBLISH](http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/csprd02/mqtt-v3.1.1-csprd02.html#_Toc385349773)). Additionally, Topic Name should not contain null character (Unicode U+0000).
 
 So, it is a pretty simple to validate Topic Name, but what about Topic Filter (when sending [SUBSCRIBE](http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/csprd02/mqtt-v3.1.1-csprd02.html#_Toc385349799)? Clearly, It's a little more complicated. Topic Filter can contains all of wildcards, so like: "+", "/", "#". But they can be used in a specific way.
 
