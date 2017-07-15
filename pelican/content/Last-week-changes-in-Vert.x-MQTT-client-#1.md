@@ -1,5 +1,5 @@
 Title: Last week changes in Vert.x MQTT client #1
-Date: 14 July 2017
+Date: 16 July 2017
 Category: GSoC
 
 In this post, I will just inform you about things happened last week in Vert.x MQTT client.
