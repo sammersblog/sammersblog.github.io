@@ -24,7 +24,7 @@ dependencies {
 }
 ```
 
-The Vert.x MQTT client will be released on 04 August with Vert.x 3.5.0 release, so artifact can be downloaded from Maven central for now and you should install artifact locally. To do so execute this:
+The Vert.x MQTT client will be released on 04 August with Vert.x 3.5.0 release, so artifact cant be downloaded from Maven central for now and you should install artifact locally. To do so execute this:
 
 ```bash
 git clone https://github.com/Sammers21/vertx-mqtt-client
