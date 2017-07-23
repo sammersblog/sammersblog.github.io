@@ -20,7 +20,107 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/last-week-changes-in-vertx-mqtt-client-1.html">Last week changes in Vert.x MQTT client #1</a></h1>
+                    <h1 class="entry-title"><a href="/how-i-can-use-vertx-mqtt-cleint.html">How I can use Vert.x MQTT cleint?</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2017-07-23T00:00:00+02:00">
+                Published: Sun 23 July 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/sammers21.html">Sammers21</a>
+        </address>
+<p>In <a href="/category/gsoc.html">GSoC</a>.</p>
+
+</footer><!-- /.post-info --><p>The thing I would like to tell you about in this article is set upping Vert.x MQTT client. Actually, I have a <a href="https://github.com/Sammers21/vertx-mqtt-client-example">real example</a> so you can try it quickly.</p>
+<p>If you are using Maven or Gradle, add the following dependency to the dependencies section of your project descriptor to access the Vert.x MQTT client:</p>
+<ul>
+<li>Maven (in your pom.xml):</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>io.vertx<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>vertx-mqtt-client<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>3.5.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+
+
+<ul>
+<li>Gradle (in your build.gradle file):</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
+  <span class="n">compile</span> <span class="s1">&#39;io.vertx:vertx-core:3.4.2&#39;</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>The Vert.x MQTT client will be released on 04 August with Vert.x 3.5.0 release, so artifact can be downloaded from Maven central for now and you should install artifact locally. To do so execute this:</p>
+<div class="highlight"><pre><span></span>git clone https://github.com/Sammers21/vertx-mqtt-client
+<span class="nb">cd</span> vertx-mqtt-client
+mvn clean install
+</pre></div>
+
+
+<p>Now that you’ve set up your project, you can create a simple application which will receive all messages from all broker channels:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">io.vertx.core.AbstractVerticle</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">io.vertx.mqtt.MqttClient</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">io.vertx.mqtt.MqttClientOptions</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.UnsupportedEncodingException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainVerticle</span> <span class="kd">extends</span> <span class="n">AbstractVerticle</span> <span class="o">{</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">MqttClientOptions</span> <span class="n">options</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MqttClientOptions</span><span class="o">()</span>
+      <span class="c1">// specify broker host</span>
+      <span class="o">.</span><span class="na">setHost</span><span class="o">(</span><span class="s">&quot;iot.eclipse.org&quot;</span><span class="o">);</span>
+
+    <span class="n">MqttClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">MqttClient</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">vertx</span><span class="o">,</span> <span class="n">options</span><span class="o">);</span>
+
+    <span class="n">client</span><span class="o">.</span><span class="na">publishHandler</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="o">{</span>
+      <span class="k">try</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">payload</span><span class="o">().</span><span class="na">getBytes</span><span class="o">(),</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Receive message with content: \&quot;%s\&quot; from topic \&quot;%s\&quot;&quot;</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">s</span><span class="o">.</span><span class="na">topicName</span><span class="o">()));</span>
+      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UnsupportedEncodingException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+      <span class="o">}</span>
+    <span class="o">});</span>
+
+    <span class="n">client</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="o">{</span>
+      <span class="c1">// subscribe to all subtopics</span>
+      <span class="n">client</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="s">&quot;#&quot;</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>The <strong>publishHandler</strong> is the handler called each time the broker, located at iot.eclipse.org:1883, send a message to you, from the topics you subscribing for.</p>
+<p>But just providing a handler is not enough, you should also connect to the broker and subscribe to some topics. For this reason, you should use a <strong>connect</strong> method and then call <strong>subscribe</strong> when connection established. </p>
+<p>To deploy this verticle form typical application you should have in your <strong>main</strong> method something like that:</p>
+<div class="highlight"><pre><span></span><span class="n">Vertx</span> <span class="n">vertx</span> <span class="o">=</span> <span class="n">Vertx</span><span class="o">.</span><span class="na">vertx</span><span class="o">();</span>
+<span class="n">vertx</span><span class="o">.</span><span class="na">deployVerticle</span><span class="o">(</span><span class="n">MainVerticle</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getCanonicalName</span><span class="o">());</span>
+</pre></div>
+
+
+<p>If you have completed all steps correctly the result should look like that:</p>
+<p><img alt="" src="http://i.imgur.com/b4yYQJE.gif"></p>
+<p>As the alternative and recommended way to bootstrap Vert.x applications you can use <a href="https://github.com/vert-x3/vertx-maven-starter">vertx-maven-starter</a> of <a href="https://github.com/vert-x3/vertx-gradle-starter">vertx-gradle-starter</a>. For completing this guide I have used the first one. The final source code available <a href="https://github.com/Sammers21/vertx-mqtt-client-example">here</a>. If you would like to learn more about Vert.x MQTT client API then check out the <a href="https://github.com/vert-x3/vertx-mqtt-client/blob/initial-work/src/main/asciidoc/java/index.adoc">full documentation</a>. </p>
+<p>Thank you for reading my blog!</p>
+<p>Cheers!</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/last-week-changes-in-vertx-mqtt-client-1.html" rel="bookmark"
+                           title="Permalink to Last week changes in Vert.x MQTT client #1">Last week changes in Vert.x MQTT client #1</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2017-07-16T00:00:00+02:00">
                 Published: Sun 16 July 2017
@@ -31,52 +131,13 @@
         </address>
 <p>In <a href="/category/gsoc.html">GSoC</a>.</p>
 
-</footer><!-- /.post-info --><h2>Intro</h2>
+</footer><!-- /.post-info -->                <h2>Intro</h2>
 <p>In this post, I will just inform you about things happened last week in Vert.x MQTT client.</p>
 <h1>New NetClient API</h1>
-<p>First thing is about changes in the internal structure of MQTT client. The client itself based on NetClient and any changes in NetClient will cause the similar ones in MQTT client. So, last changes were about making it able to handle arbitrary messages, and exposing fewer details to API consumers. As a result, MQTT client was refactored and now it uses new API.</p>
-<h5>Here changes in Vert.x core is:</h5>
-<p><a href="https://github.com/eclipse/vert.x/pull/2044">https://github.com/eclipse/vert.x/pull/2044</a> <a href="https://github.com/eclipse/vert.x/commit/586be5c626aececc1d7bb403a37e2851485d205e">https://github.com/eclipse/vert.x/commit/586be5c626aececc1d7bb403a37e2851485d205e</a></p>
-<h5>Changes in Vert.x MQTT client:</h5>
-<p><a href="https://github.com/vert-x3/vertx-mqtt-client/pull/14">https://github.com/vert-x3/vertx-mqtt-client/pull/14</a></p>
-<h5>Changes in Vert.x MQTT server:</h5>
-<p><a href="https://github.com/vert-x3/vertx-mqtt-server/pull/29">https://github.com/vert-x3/vertx-mqtt-server/pull/29</a></p>
-<h1>Topic Names and Topic Filters validation</h1>
-<p>Another thing connected with topic validation when sending <a href="http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/csprd02/mqtt-v3.1.1-csprd02.html#_Toc385349773">PUBLISH</a> or <a href="http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/csprd02/mqtt-v3.1.1-csprd02.html#_Toc385349799">SUBSCRIBE</a> MQTT packet. Basically, the single and multi-level wildcard characters MUST NOT be used within a Topic Name (when sending <a href="http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/csprd02/mqtt-v3.1.1-csprd02.html#_Toc385349773">PUBLISH</a>). Additionally, Topic Name should not contain null character (Unicode U+0000).</p>
-<p>So, it is a pretty simple to validate Topic Name, but what about Topic Filter (when sending <a href="http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/csprd02/mqtt-v3.1.1-csprd02.html#_Toc385349799">SUBSCRIBE</a>? Clearly, It's a little more complicated. Topic Filter can contains all of wildcards, so like: "+", "/", "#". But they can be used in a specific way.</p>
-<h5>Quick explanation:</h5>
-<ul>
-<li><em>(‘/’ U+002F) is used to separate each level within a topic tree and provide a hierarchical structure to the Topic Names.</em></li>
-<li><em>(‘#’ U+0023) is a wildcard character that matches any number of levels within a topic.</em></li>
-<li><em>(‘+’ U+002B) is a wildcard character that matches only one topic level</em></li>
-</ul>
-<h5>Some examples of wrong and right usages:</h5>
-<ul>
-<li><em>“sport/tennis/#” is valid</em></li>
-<li><em>“sport/tennis/#/ranking” is not valid</em></li>
-<li><em>“sport/+/player1” is valid</em></li>
-<li><em>“sport+” is not valid</em></li>
-</ul>
-<h5>More about Topic Names and Topic Filters in examples and explanations can be found in MQTT 3.1.1 spec:</h5>
-<p><a href="http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/csprd02/mqtt-v3.1.1-csprd02.html#_Toc385349843">Topic Names and Topic Filters</a></p>
-<h5>Github PR for that:</h5>
-<p><a href="https://github.com/vert-x3/vertx-mqtt-client/pull/13">https://github.com/vert-x3/vertx-mqtt-client/pull/13</a></p>
-<h1>Handling QoS=1 and QoS=2 PUBLISH messages.</h1>
-<p>The last, but not least one for today is handling QoS=1 and 2 PUBLISH messages. Here the schema of PUBLISH pipeline is:</p>
-<p><img alt="image" src="https://user-images.githubusercontent.com/16746106/28243056-893190be-69c6-11e7-95ea-556aea29a634.png"></p>
-<p>So, the PR for that was created 14 days ago and since then, it was rewritten 3 times. The main complexity is that handling of inbound and outbound messages should be lightweight enough. It was not so when I had been implemented that second time. It was based on Vert.x timers. So, it is predictable that with growing amount of publishing sessions the client's verticle will just handle a lot of times without doing anything else.</p>
-<p>A current implementation of the issue used approach called "in flight queue". This approach takes advantage of message ordering granted by MQTT 3.1.1 protocol.</p>
-<h5>More about message ordering:</h5>
-<p><a href="http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/csprd02/mqtt-v3.1.1-csprd02.html#_Toc385349841">Message ordering</a></p>
-<h5>Github PR for that:</h5>
-<p><a href="https://github.com/vert-x3/vertx-mqtt-client/pull/8">https://github.com/vert-x3/vertx-mqtt-client/pull/8</a></p>
-<p>Thank you for reading my blog.</p>
-<p>Cheers!</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>First thing is about changes in the internal structure of MQTT client. The client itself based on NetClient and any changes in NetClient will cause the similar ones …</p>
+                <a class="readmore" href="/last-week-changes-in-vertx-mqtt-client-1.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

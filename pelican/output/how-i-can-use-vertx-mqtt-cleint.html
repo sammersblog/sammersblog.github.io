@@ -2,7 +2,7 @@
 <html lang="en_us">
 <head>
         <meta charset="utf-8" />
-        <title>@Sammers21</title>
+        <title>How I can use Vert.x MQTT cleint?</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
 
         <!--[if IE]>
@@ -14,13 +14,18 @@
         <header id="banner" class="body">
                 <h1><a href="/">@Sammers21 </a></h1>
                 <nav><ul>
-                    <li><a href="/category/gsoc.html">GSoC</a></li>
+                    <li class="active"><a href="/category/gsoc.html">GSoC</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/how-i-can-use-vertx-mqtt-cleint.html" rel="bookmark"
+           title="Permalink to How I can use Vert.x MQTT cleint?">How I can use Vert.x MQTT cleint?</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/how-i-can-use-vertx-mqtt-cleint.html">How I can use Vert.x MQTT cleint?</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2017-07-23T00:00:00+02:00">
                 Published: Sun 23 July 2017
@@ -31,7 +36,7 @@
         </address>
 <p>In <a href="/category/gsoc.html">GSoC</a>.</p>
 
-</footer><!-- /.post-info --><p>The thing I would like to tell you about in this article is set upping Vert.x MQTT client. Actually, I have a <a href="https://github.com/Sammers21/vertx-mqtt-client-example">real example</a> so you can try it quickly.</p>
+</footer><!-- /.post-info -->      <p>The thing I would like to tell you about in this article is set upping Vert.x MQTT client. Actually, I have a <a href="https://github.com/Sammers21/vertx-mqtt-client-example">real example</a> so you can try it quickly.</p>
 <p>If you are using Maven or Gradle, add the following dependency to the dependencies section of your project descriptor to access the Vert.x MQTT client:</p>
 <ul>
 <li>Maven (in your pom.xml):</li>
@@ -107,85 +112,11 @@ mvn clean install
 <p><img alt="" src="http://i.imgur.com/b4yYQJE.gif"></p>
 <p>As the alternative and recommended way to bootstrap Vert.x applications you can use <a href="https://github.com/vert-x3/vertx-maven-starter">vertx-maven-starter</a> of <a href="https://github.com/vert-x3/vertx-gradle-starter">vertx-gradle-starter</a>. For completing this guide I have used the first one. The final source code available <a href="https://github.com/Sammers21/vertx-mqtt-client-example">here</a>. If you would like to learn more about Vert.x MQTT client API then check out the <a href="https://github.com/vert-x3/vertx-mqtt-client/blob/initial-work/src/main/asciidoc/java/index.adoc">full documentation</a>. </p>
 <p>Thank you for reading my blog!</p>
-<p>Cheers!</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>Cheers!</p>
+    </div><!-- /.entry-content -->
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/last-week-changes-in-vertx-mqtt-client-1.html" rel="bookmark"
-                           title="Permalink to Last week changes in Vert.x MQTT client #1">Last week changes in Vert.x MQTT client #1</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2017-07-16T00:00:00+02:00">
-                Published: Sun 16 July 2017
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/sammers21.html">Sammers21</a>
-        </address>
-<p>In <a href="/category/gsoc.html">GSoC</a>.</p>
-
-</footer><!-- /.post-info -->                <h2>Intro</h2>
-<p>In this post, I will just inform you about things happened last week in Vert.x MQTT client.</p>
-<h1>New NetClient API</h1>
-<p>First thing is about changes in the internal structure of MQTT client. The client itself based on NetClient and any changes in NetClient will cause the similar ones …</p>
-                <a class="readmore" href="/last-week-changes-in-vertx-mqtt-client-1.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/introduction-to-vertx-mqtt-client.html" rel="bookmark"
-                           title="Permalink to Introduction to vertx-mqtt-client">Introduction to vertx-mqtt-client</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2017-07-09T00:00:00+02:00">
-                Published: Sun 09 July 2017
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/sammers21.html">Sammers21</a>
-        </address>
-<p>In <a href="/category/gsoc.html">GSoC</a>.</p>
-
-</footer><!-- /.post-info -->                <h1>Intro</h1>
-<p>I am an GSoC 2017 student and the project I'm working on is an MQTT client for Vert.x JVM toolkit. It designed in Vert.x ideology, which also means, that all operations are non blocking and you, as a user, can be notified when some event happens.</p>
-<p>In …</p>
-                <a class="readmore" href="/introduction-to-vertx-mqtt-client.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/welcome.html" rel="bookmark"
-                           title="Permalink to Welcome">Welcome</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2017-07-08T00:00:00+02:00">
-                Published: Sat 08 July 2017
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/sammers21.html">Sammers21</a>
-        </address>
-<p>In <a href="/category/gsoc.html">GSoC</a>.</p>
-
-</footer><!-- /.post-info -->                <p>Hello anyone who read my blog.</p>
-                <a class="readmore" href="/welcome.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
+  </article>
+</section>
         <section id="extras" class="body">
                 <div class="social">
                         <h2>social</h2>
