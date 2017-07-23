@@ -84,7 +84,7 @@ If you have completed all steps correctly the result should look like that:
 
 ![](http://i.imgur.com/b4yYQJE.gif)
 
-As the alternative and recommended way to bootstrap Vert.x applications you can use [vertx-maven-starter](https://github.com/vert-x3/vertx-maven-starter) of [vertx-gradle-starter](https://github.com/vert-x3/vertx-gradle-starter). For completing this guide I have used the first one. The final source code available [here](https://github.com/Sammers21/vertx-mqtt-client-example). If you would like to learn more about Vert.x MQTT client API then check out the [full documentation](https://github.com/vert-x3/vertx-mqtt-client/blob/initial-work/src/main/asciidoc/java/index.adoc). 
+As the alternative and recommended way to bootstrap Vert.x applications you can use [vertx-maven-starter](https://github.com/vert-x3/vertx-maven-starter) or [vertx-gradle-starter](https://github.com/vert-x3/vertx-gradle-starter). For completing this guide I have used the first one. The final source code available [here](https://github.com/Sammers21/vertx-mqtt-client-example). If you would like to learn more about Vert.x MQTT client API then check out the [full documentation](https://github.com/vert-x3/vertx-mqtt-client/blob/initial-work/src/main/asciidoc/java/index.adoc). 
 
 Thank you for reading my blog!
 
