@@ -97,7 +97,7 @@ mvn clean install
 
 <p>The <strong>publishHandler</strong> is the handler called each time the broker, located at iot.eclipse.org:1883, send a message to you, from the topics you subscribing for.</p>
 <p>But just providing a handler is not enough, you should also connect to the broker and subscribe to some topics. For this reason, you should use a <strong>connect</strong> method and then call <strong>subscribe</strong> when connection established. </p>
-<p>To deploy this verticle form typical application you should have in your <strong>main</strong> method something like that:</p>
+<p>To deploy this verticle from typical application you should have in your <strong>main</strong> method something like that:</p>
 <div class="highlight"><pre><span></span><span class="n">Vertx</span> <span class="n">vertx</span> <span class="o">=</span> <span class="n">Vertx</span><span class="o">.</span><span class="na">vertx</span><span class="o">();</span>
 <span class="n">vertx</span><span class="o">.</span><span class="na">deployVerticle</span><span class="o">(</span><span class="n">MainVerticle</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getCanonicalName</span><span class="o">());</span>
 </pre></div>

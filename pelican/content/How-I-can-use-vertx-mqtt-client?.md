@@ -73,7 +73,7 @@ The **publishHandler** is the handler called each time the broker, located at io
 
 But just providing a handler is not enough, you should also connect to the broker and subscribe to some topics. For this reason, you should use a **connect** method and then call **subscribe** when connection established. 
 
-To deploy this verticle form typical application you should have in your **main** method something like that:
+To deploy this verticle from typical application you should have in your **main** method something like that:
 
 ```java
 Vertx vertx = Vertx.vertx();
