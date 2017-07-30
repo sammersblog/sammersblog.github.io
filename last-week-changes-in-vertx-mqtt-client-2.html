@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en_us">
+<head>
+        <meta charset="utf-8" />
+        <title>Last week changes in Vert.x MQTT client #2</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">@Sammers21 </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/gsoc.html">GSoC</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/last-week-changes-in-vertx-mqtt-client-2.html" rel="bookmark"
+           title="Permalink to Last week changes in Vert.x MQTT client #2">Last week changes in Vert.x MQTT client #2</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-07-30T00:00:00+02:00">
+                Published: Sun 30 July 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/sammers21.html">Sammers21</a>
+        </address>
+<p>In <a href="/category/gsoc.html">GSoC</a>.</p>
+
+</footer><!-- /.post-info -->      <h1>Intro</h1>
+<p>This post is dedicated to changes in Vert.x MQTT client which was made in the last week. </p>
+<p>Here it is the short list of topic I will talk about:</p>
+<ul>
+<li>
+<p>Vert.x MQTT client and server in the same repository</p>
+</li>
+<li>
+<p>Opportunity to config max message size</p>
+</li>
+<li>
+<p>Handler for closing connection and internal netty's exceptions</p>
+</li>
+</ul>
+<h1>Vert.x MQTT client and server in the same repository</h1>
+<p>Approximately one and half month ago we had been working on an initial version of Vert.x MQTT client and there is was one little problem: there are some classes that can be used by server and client so that they should be shared, but they weren't. After a discussion on Vert.x google group we have decided to move Vert.x MQTT client sources to Vert.x MQTT server repository. Actually, since then both of client and server located in one artifact. Thus you can find repository with client and server source <a href="https://github.com/vert-x3/vertx-mqtt">here</a>.</p>
+<h1>Opportunity to config max message size</h1>
+<p>Before this change client was able to receive only messages with size up 8096 bytes. According to <a href="https://github.com/vert-x3/vertx-mqtt/pull/38">this improvement</a>, a user can configure the client to allow messages of any size by passing specific option.</p>
+<h1>Handler for closing connection and internal netty's exceptions</h1>
+<p>When communicating with a server the connection can be closed without sending related packet. <a href="https://github.com/vert-x3/vertx-mqtt/pull/40">Now</a>, you can subscribe for such event just providing a handler:</p>
+<div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="na">closeHandler</span><span class="o">(</span><span class="n">v</span> <span class="o">-&gt;</span> <span class="o">{</span>
+  <span class="c1">// connection is closed</span>
+  <span class="c1">// do something....</span>
+<span class="o">});</span>
+</pre></div>
+
+
+<p>Also, Vert.x is based on Netty and some error in its internal structures can be the cause of application crush. <a href="https://github.com/vert-x3/vertx-mqtt/pull/41">The next improvement</a> is about catching such things. Exceptions can be caught in a way like this:</p>
+<div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="na">exceptionHandler</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+  <span class="c1">// exception handling logic here</span>
+<span class="o">});</span>
+</pre></div>
+
+
+<p>Thanks for reading!</p>
+<p>Cheers!</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://twitter.com/titantins">Twitter</a></li>
+                            <li><a href="https://github.com/Sammers21">Github</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

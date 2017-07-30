@@ -17,8 +17,29 @@ Here it is the short list of topic I will talk about:
 
 Approximately one and half month ago we had been working on an initial version of Vert.x MQTT client and there is was one little problem: there are some classes that can be used by server and client so that they should be shared, but they weren't. After a discussion on Vert.x google group we have decided to move Vert.x MQTT client sources to Vert.x MQTT server repository. Actually, since then both of client and server located in one artifact. Thus you can find repository with client and server source [here](https://github.com/vert-x3/vertx-mqtt).
 
-Created & already merged “make "Using Vert.x MQTT" a common part” PR: https://github.com/vert-x3/vertx-mqtt/pull/37
-Created & already merged “add the opportunity to config max message size” PR: https://github.com/vert-x3/vertx-mqtt/pull/38
+# Opportunity to config max message size
 
-Created & already merged “add a closeHandler to the client” PR: https://github.com/vert-x3/vertx-mqtt/pull/40
-Created & already merged “add exception handling” PR: https://github.com/vert-x3/vertx-mqtt/pull/41
+Before this change client was able to receive only messages with size up 8096 bytes. According to [this improvement](https://github.com/vert-x3/vertx-mqtt/pull/38), a user can configure the client to allow messages of any size by passing specific option.
+
+# Handler for closing connection and internal netty's exceptions
+
+When communicating with a server the connection can be closed without sending related packet. [Now](https://github.com/vert-x3/vertx-mqtt/pull/40), you can subscribe for such event just providing a handler:
+
+```java
+client.closeHandler(v -> {
+  // connection is closed
+  // do something....
+});
+```
+
+Also, Vert.x is based on Netty and some error in its internal structures can be the cause of application crush. [The next improvement](https://github.com/vert-x3/vertx-mqtt/pull/41) is about catching such things. Exceptions can be caught in a way like this:
+
+```java
+client.exceptionHandler(e -> {
+  // exception handling logic here
+});
+```
+
+Thanks for reading!
+
+Cheers!

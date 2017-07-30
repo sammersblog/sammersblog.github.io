@@ -20,7 +20,66 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/how-i-can-use-vertx-mqtt-cleint.html">How I can use Vert.x MQTT cleint?</a></h1>
+                    <h1 class="entry-title"><a href="/last-week-changes-in-vertx-mqtt-client-2.html">Last week changes in Vert.x MQTT client #2</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2017-07-30T00:00:00+02:00">
+                Published: Sun 30 July 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/sammers21.html">Sammers21</a>
+        </address>
+<p>In <a href="/category/gsoc.html">GSoC</a>.</p>
+
+</footer><!-- /.post-info --><h1>Intro</h1>
+<p>This post is dedicated to changes in Vert.x MQTT client which was made in the last week. </p>
+<p>Here it is the short list of topic I will talk about:</p>
+<ul>
+<li>
+<p>Vert.x MQTT client and server in the same repository</p>
+</li>
+<li>
+<p>Opportunity to config max message size</p>
+</li>
+<li>
+<p>Handler for closing connection and internal netty's exceptions</p>
+</li>
+</ul>
+<h1>Vert.x MQTT client and server in the same repository</h1>
+<p>Approximately one and half month ago we had been working on an initial version of Vert.x MQTT client and there is was one little problem: there are some classes that can be used by server and client so that they should be shared, but they weren't. After a discussion on Vert.x google group we have decided to move Vert.x MQTT client sources to Vert.x MQTT server repository. Actually, since then both of client and server located in one artifact. Thus you can find repository with client and server source <a href="https://github.com/vert-x3/vertx-mqtt">here</a>.</p>
+<h1>Opportunity to config max message size</h1>
+<p>Before this change client was able to receive only messages with size up 8096 bytes. According to <a href="https://github.com/vert-x3/vertx-mqtt/pull/38">this improvement</a>, a user can configure the client to allow messages of any size by passing specific option.</p>
+<h1>Handler for closing connection and internal netty's exceptions</h1>
+<p>When communicating with a server the connection can be closed without sending related packet. <a href="https://github.com/vert-x3/vertx-mqtt/pull/40">Now</a>, you can subscribe for such event just providing a handler:</p>
+<div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="na">closeHandler</span><span class="o">(</span><span class="n">v</span> <span class="o">-&gt;</span> <span class="o">{</span>
+  <span class="c1">// connection is closed</span>
+  <span class="c1">// do something....</span>
+<span class="o">});</span>
+</pre></div>
+
+
+<p>Also, Vert.x is based on Netty and some error in its internal structures can be the cause of application crush. <a href="https://github.com/vert-x3/vertx-mqtt/pull/41">The next improvement</a> is about catching such things. Exceptions can be caught in a way like this:</p>
+<div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="na">exceptionHandler</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+  <span class="c1">// exception handling logic here</span>
+<span class="o">});</span>
+</pre></div>
+
+
+<p>Thanks for reading!</p>
+<p>Cheers!</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/how-i-can-use-vertx-mqtt-cleint.html" rel="bookmark"
+                           title="Permalink to How I can use Vert.x MQTT cleint?">How I can use Vert.x MQTT cleint?</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2017-07-23T00:00:00+02:00">
                 Published: Sun 23 July 2017
@@ -31,93 +90,11 @@
         </address>
 <p>In <a href="/category/gsoc.html">GSoC</a>.</p>
 
-</footer><!-- /.post-info --><p>The thing I would like to tell you about in this article is setting up Vert.x MQTT client. Actually, I have a <a href="https://github.com/Sammers21/vertx-mqtt-client-example">real example</a> so you can try it quickly.</p>
-<p>If you are using Maven or Gradle, add the following dependency to the dependencies section of your project descriptor to access the Vert.x MQTT client:</p>
-<ul>
-<li>Maven (in your pom.xml):</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>io.vertx<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>vertx-mqtt<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>3.5.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-
-<span class="nt">&lt;repositories&gt;</span>
-    <span class="nt">&lt;repository&gt;</span>
-      <span class="nt">&lt;id&gt;</span>oss.sonatype.org-snapshot<span class="nt">&lt;/id&gt;</span>
-      <span class="nt">&lt;url&gt;</span>https://oss.sonatype.org/content/repositories/snapshots<span class="nt">&lt;/url&gt;</span>
-    <span class="nt">&lt;/repository&gt;</span>
-<span class="nt">&lt;/repositories&gt;</span>
-</pre></div>
-
-
-<ul>
-<li>Gradle (in your build.gradle file):</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
-  <span class="n">compile</span> <span class="s1">&#39;io.vertx:vertx-core:3.4.2&#39;</span>
-<span class="o">}</span>
-<span class="n">repositories</span> <span class="o">{</span>
-  <span class="n">maven</span> <span class="o">{</span>
-    <span class="n">url</span> <span class="s2">&quot;https://oss.sonatype.org/content/repositories/snapshots&quot;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-
-
-<p>Now that you’ve set up your project, you can create a simple application which will receive all messages from all broker channels:</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">io.vertx.core.AbstractVerticle</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">io.vertx.mqtt.MqttClient</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">io.vertx.mqtt.MqttClientOptions</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.io.UnsupportedEncodingException</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainVerticle</span> <span class="kd">extends</span> <span class="n">AbstractVerticle</span> <span class="o">{</span>
-
-  <span class="nd">@Override</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">MqttClientOptions</span> <span class="n">options</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MqttClientOptions</span><span class="o">()</span>
-      <span class="c1">// specify broker host</span>
-      <span class="o">.</span><span class="na">setHost</span><span class="o">(</span><span class="s">&quot;iot.eclipse.org&quot;</span><span class="o">);</span>
-
-    <span class="n">MqttClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">MqttClient</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">vertx</span><span class="o">,</span> <span class="n">options</span><span class="o">);</span>
-
-    <span class="n">client</span><span class="o">.</span><span class="na">publishHandler</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="o">{</span>
-      <span class="k">try</span> <span class="o">{</span>
-        <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">payload</span><span class="o">().</span><span class="na">getBytes</span><span class="o">(),</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">);</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Receive message with content: \&quot;%s\&quot; from topic \&quot;%s\&quot;&quot;</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">s</span><span class="o">.</span><span class="na">topicName</span><span class="o">()));</span>
-      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UnsupportedEncodingException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-      <span class="o">}</span>
-    <span class="o">});</span>
-
-    <span class="n">client</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="o">{</span>
-      <span class="c1">// subscribe to all subtopics</span>
-      <span class="n">client</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="s">&quot;#&quot;</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
-    <span class="o">});</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-
-
-<p>The <strong>publishHandler</strong> is the handler called each time the broker, located at iot.eclipse.org:1883, sends a message to you, from the topics you subscribing for.</p>
-<p>But just providing a handler is not enough, you should also connect to the broker and subscribe to some topics. For this reason, you should use a <strong>connect</strong> method and then call <strong>subscribe</strong> when connection established. </p>
-<p>To deploy this verticle from typical application you should have in your <strong>main</strong> method something like that:</p>
-<div class="highlight"><pre><span></span><span class="n">Vertx</span> <span class="n">vertx</span> <span class="o">=</span> <span class="n">Vertx</span><span class="o">.</span><span class="na">vertx</span><span class="o">();</span>
-<span class="n">vertx</span><span class="o">.</span><span class="na">deployVerticle</span><span class="o">(</span><span class="n">MainVerticle</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getCanonicalName</span><span class="o">());</span>
-</pre></div>
-
-
-<p>If you have completed all steps correctly the result should look like that:</p>
-<p><img alt="" src="http://i.imgur.com/b4yYQJE.gif"></p>
-<p>As the alternative and recommended way to bootstrap Vert.x applications you can use <a href="https://github.com/vert-x3/vertx-maven-starter">vertx-maven-starter</a> or <a href="https://github.com/vert-x3/vertx-gradle-starter">vertx-gradle-starter</a>. For completing this guide I have used the first one. The final source code available <a href="https://github.com/Sammers21/vertx-mqtt-client-example">here</a>. If you would like to learn more about Vert.x MQTT client API then check out the <a href="https://github.com/vert-x3/vertx-mqtt-client/blob/initial-work/src/main/asciidoc/java/index.adoc">full documentation</a>. </p>
-<p>Thank you for reading my blog!</p>
-<p>Cheers!</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>The thing I would like to tell you about in this article is setting up Vert.x MQTT client. Actually, I have a <a href="https://github.com/Sammers21/vertx-mqtt-client-example">real example</a> so you can try it quickly.</p>
+<p>If you are using Maven or Gradle, add the following dependency to the dependencies section of your project descriptor …</p>
+                <a class="readmore" href="/how-i-can-use-vertx-mqtt-cleint.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
