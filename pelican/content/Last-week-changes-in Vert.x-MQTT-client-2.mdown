@@ -1,0 +1,24 @@
+Title: Last week changes in Vert.x MQTT client #2
+Date: 30 July 2017
+Category: GSoC
+	
+# Intro
+This post is dedicated to changes in Vert.x MQTT client which was made in the last week. 
+
+Here it is the short list of topic I will talk about:
+
+* Vert.x MQTT client and server in the same repository
+
+* Opportunity to config max message size
+
+* Handler for closing connection and internal netty's exceptions
+
+# Vert.x MQTT client and server in the same repository
+
+Approximately one and half month ago we had been working on an initial version of Vert.x MQTT client and there is was one little problem: there are some classes that can be used by server and client so that they should be shared, but they weren't. After a discussion on Vert.x google group we have decided to move Vert.x MQTT client sources to Vert.x MQTT server repository. Actually, since then both of client and server located in one artifact. Thus you can find repository with client and server source [here](https://github.com/vert-x3/vertx-mqtt).
+
+Created & already merged “make "Using Vert.x MQTT" a common part” PR: https://github.com/vert-x3/vertx-mqtt/pull/37
+Created & already merged “add the opportunity to config max message size” PR: https://github.com/vert-x3/vertx-mqtt/pull/38
+
+Created & already merged “add a closeHandler to the client” PR: https://github.com/vert-x3/vertx-mqtt/pull/40
+Created & already merged “add exception handling” PR: https://github.com/vert-x3/vertx-mqtt/pull/41
