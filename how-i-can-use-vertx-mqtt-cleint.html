@@ -36,16 +36,23 @@
         </address>
 <p>In <a href="/category/gsoc.html">GSoC</a>.</p>
 
-</footer><!-- /.post-info -->      <p>The thing I would like to tell you about in this article is set upping Vert.x MQTT client. Actually, I have a <a href="https://github.com/Sammers21/vertx-mqtt-client-example">real example</a> so you can try it quickly.</p>
+</footer><!-- /.post-info -->      <p>The thing I would like to tell you about in this article is setting up Vert.x MQTT client. Actually, I have a <a href="https://github.com/Sammers21/vertx-mqtt-client-example">real example</a> so you can try it quickly.</p>
 <p>If you are using Maven or Gradle, add the following dependency to the dependencies section of your project descriptor to access the Vert.x MQTT client:</p>
 <ul>
 <li>Maven (in your pom.xml):</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>io.vertx<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>vertx-mqtt-client<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>vertx-mqtt<span class="nt">&lt;/artifactId&gt;</span>
     <span class="nt">&lt;version&gt;</span>3.5.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;repositories&gt;</span>
+    <span class="nt">&lt;repository&gt;</span>
+      <span class="nt">&lt;id&gt;</span>oss.sonatype.org-snapshot<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;url&gt;</span>https://oss.sonatype.org/content/repositories/snapshots<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/repository&gt;</span>
+<span class="nt">&lt;/repositories&gt;</span>
 </pre></div>
 
 
@@ -55,13 +62,11 @@
 <div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
   <span class="n">compile</span> <span class="s1">&#39;io.vertx:vertx-core:3.4.2&#39;</span>
 <span class="o">}</span>
-</pre></div>
-
-
-<p>The Vert.x MQTT client will be released on 04 August with Vert.x 3.5.0 release, so artifact cant be downloaded from Maven central for now and you should install artifact locally. To do so execute this:</p>
-<div class="highlight"><pre><span></span>git clone https://github.com/Sammers21/vertx-mqtt-client
-<span class="nb">cd</span> vertx-mqtt-client
-mvn clean install
+<span class="n">repositories</span> <span class="o">{</span>
+  <span class="n">maven</span> <span class="o">{</span>
+    <span class="n">url</span> <span class="s2">&quot;https://oss.sonatype.org/content/repositories/snapshots&quot;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 </pre></div>
 
 
@@ -100,7 +105,7 @@ mvn clean install
 </pre></div>
 
 
-<p>The <strong>publishHandler</strong> is the handler called each time the broker, located at iot.eclipse.org:1883, send a message to you, from the topics you subscribing for.</p>
+<p>The <strong>publishHandler</strong> is the handler called each time the broker, located at iot.eclipse.org:1883, sends a message to you, from the topics you subscribing for.</p>
 <p>But just providing a handler is not enough, you should also connect to the broker and subscribe to some topics. For this reason, you should use a <strong>connect</strong> method and then call <strong>subscribe</strong> when connection established. </p>
 <p>To deploy this verticle from typical application you should have in your <strong>main</strong> method something like that:</p>
 <div class="highlight"><pre><span></span><span class="n">Vertx</span> <span class="n">vertx</span> <span class="o">=</span> <span class="n">Vertx</span><span class="o">.</span><span class="na">vertx</span><span class="o">();</span>

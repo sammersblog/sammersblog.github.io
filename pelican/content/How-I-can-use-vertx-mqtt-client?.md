@@ -2,7 +2,7 @@ Title: How I can use Vert.x MQTT cleint?
 Date: 23 July 2017
 Category: GSoC
 
-The thing I would like to tell you about in this article is set upping Vert.x MQTT client. Actually, I have a [real example](https://github.com/Sammers21/vertx-mqtt-client-example) so you can try it quickly.
+The thing I would like to tell you about in this article is setting up Vert.x MQTT client. Actually, I have a [real example](https://github.com/Sammers21/vertx-mqtt-client-example) so you can try it quickly.
 
 If you are using Maven or Gradle, add the following dependency to the dependencies section of your project descriptor to access the Vert.x MQTT client:
 
@@ -11,9 +11,16 @@ If you are using Maven or Gradle, add the following dependency to the dependenci
 ```xml
 <dependency>
     <groupId>io.vertx</groupId>
-    <artifactId>vertx-mqtt-client</artifactId>
+    <artifactId>vertx-mqtt</artifactId>
     <version>3.5.0-SNAPSHOT</version>
 </dependency>
+
+<repositories>
+    <repository>
+      <id>oss.sonatype.org-snapshot</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
+</repositories>
 ```
 
 * Gradle (in your build.gradle file):
@@ -22,14 +29,11 @@ If you are using Maven or Gradle, add the following dependency to the dependenci
 dependencies {
   compile 'io.vertx:vertx-core:3.4.2'
 }
-```
-
-The Vert.x MQTT client will be released on 04 August with Vert.x 3.5.0 release, so artifact cant be downloaded from Maven central for now and you should install artifact locally. To do so execute this:
-
-```bash
-git clone https://github.com/Sammers21/vertx-mqtt-client
-cd vertx-mqtt-client
-mvn clean install
+repositories {
+  maven {
+    url "https://oss.sonatype.org/content/repositories/snapshots"
+  }
+}
 ```
 
 Now that you’ve set up your project, you can create a simple application which will receive all messages from all broker channels:
@@ -69,7 +73,7 @@ public class MainVerticle extends AbstractVerticle {
 }
 ```
 
-The **publishHandler** is the handler called each time the broker, located at iot.eclipse.org:1883, send a message to you, from the topics you subscribing for.
+The **publishHandler** is the handler called each time the broker, located at iot.eclipse.org:1883, sends a message to you, from the topics you subscribing for.
 
 But just providing a handler is not enough, you should also connect to the broker and subscribe to some topics. For this reason, you should use a **connect** method and then call **subscribe** when connection established. 
 
