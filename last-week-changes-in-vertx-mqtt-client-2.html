@@ -51,7 +51,7 @@
 </li>
 </ul>
 <h1>Vert.x MQTT client and server in the same repository</h1>
-<p>Approximately one and half month ago we had been working on an initial version of Vert.x MQTT client and there is was one little problem: there are some classes that can be used by server and client so that they should be shared, but they weren't. After a discussion on Vert.x google group we have decided to move Vert.x MQTT client sources to Vert.x MQTT server repository. Actually, since then both of client and server located in one artifact. Thus you can find repository with client and server source <a href="https://github.com/vert-x3/vertx-mqtt">here</a>.</p>
+<p>Approximately one and half month ago we had been working on an initial version of Vert.x MQTT client and there is was one little problem: there are some classes that can be used by server and client so that they should be shared, but they weren't. After a discussion on <a href="https://groups.google.com/forum/#!topic/vertx-dev/34-kHI5a4EY">Vert.x google group</a> we have decided to move Vert.x MQTT client sources to Vert.x MQTT server repository. Actually, since then both of client and server located in one artifact. Thus you can find repository with client and server source <a href="https://github.com/vert-x3/vertx-mqtt">here</a>.</p>
 <h1>Opportunity to config max message size</h1>
 <p>Before this change client was able to receive only messages with size up 8096 bytes. According to <a href="https://github.com/vert-x3/vertx-mqtt/pull/38">this improvement</a>, a user can configure the client to allow messages of any size by passing specific option.</p>
 <h1>Handler for closing connection and internal netty's exceptions</h1>

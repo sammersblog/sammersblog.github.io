@@ -15,7 +15,7 @@ Here it is the short list of topic I will talk about:
 
 # Vert.x MQTT client and server in the same repository
 
-Approximately one and half month ago we had been working on an initial version of Vert.x MQTT client and there is was one little problem: there are some classes that can be used by server and client so that they should be shared, but they weren't. After a discussion on Vert.x google group we have decided to move Vert.x MQTT client sources to Vert.x MQTT server repository. Actually, since then both of client and server located in one artifact. Thus you can find repository with client and server source [here](https://github.com/vert-x3/vertx-mqtt).
+Approximately one and half month ago we had been working on an initial version of Vert.x MQTT client and there is was one little problem: there are some classes that can be used by server and client so that they should be shared, but they weren't. After a discussion on [Vert.x google group](https://groups.google.com/forum/#!topic/vertx-dev/34-kHI5a4EY) we have decided to move Vert.x MQTT client sources to Vert.x MQTT server repository. Actually, since then both of client and server located in one artifact. Thus you can find repository with client and server source [here](https://github.com/vert-x3/vertx-mqtt).
 
 # Opportunity to config max message size
 
