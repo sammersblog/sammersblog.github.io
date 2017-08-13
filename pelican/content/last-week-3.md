@@ -5,7 +5,7 @@ Category: GSoC
 
 # Intro
 
-Welcome! Today I going to introduce you to thing that happened with Vert.x MQTT client last week. 
+Welcome! Today I going to introduce you to the things that happened with Vert.x MQTT client last week.
 
 # Vert.x 3.5.0.Beta1 release
 
