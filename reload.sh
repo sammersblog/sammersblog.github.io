@@ -2,4 +2,4 @@ cd pelican
 pelican content
 cd output
 cp -fRa  ./ ../../
-python -m pelican.server
+python2 -m pelican.server

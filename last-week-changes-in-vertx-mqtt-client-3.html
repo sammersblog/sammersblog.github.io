@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en_us">
+<head>
+        <meta charset="utf-8" />
+        <title>Last week changes in Vert.x MQTT client #3</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">@Sammers21 </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/gsoc.html">GSoC</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/last-week-changes-in-vertx-mqtt-client-3.html" rel="bookmark"
+           title="Permalink to Last week changes in Vert.x MQTT client #3">Last week changes in Vert.x MQTT client #3</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-08-13T00:00:00+02:00">
+                Published: Sun 13 August 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/sammers21.html">Sammers21</a>
+        </address>
+<p>In <a href="/category/gsoc.html">GSoC</a>.</p>
+
+</footer><!-- /.post-info -->      <h1>Intro</h1>
+<p>Welcome! Today I going to introduce you to thing that happened with Vert.x MQTT client last week. </p>
+<h1>Vert.x 3.5.0.Beta1 release</h1>
+<p>The great thing about Vert.x MQTT client is that it has been released and now available in maven central. Don't know the right way to start? Read <a href="https://sammersblog.github.io/how-i-can-use-vertx-mqtt-cleint.html">this</a>.</p>
+<h1>Mqtt-client examples</h1>
+<p>You most probably aware of <a href="https://github.com/vert-x3/vertx-examples">vertx-exampeles</a> project. I have contributed some examples of Vert.x MQTT client usage and put them together with server ones. So, you can find these examples in <a href="https://github.com/vert-x3/vertx-examples/tree/3.5.0.beta1/mqtt-examples">related branch</a>. <a href="https://github.com/vert-x3/vertx-examples/pull/220">PR for that</a>.</p>
+<h1>Situation when receiving another CONNECT packet</h1>
+<p>Github is very good place for open source. One day, someone just submitted <a href="https://github.com/vert-x3/vertx-mqtt/issues/33">an issue</a> and anyone can work on a solution. Same thing was in my case. After a quick discussion, i figured out the cause of the problem and then proposed a <a href="https://github.com/vert-x3/vertx-mqtt/pull/43">PR for that</a>.</p>
+<h1>SSL support &amp; Wireshark</h1>
+<p>To be sure that some feature works you should write a couple of unit tests. In <a href="https://github.com/vert-x3/vertx-mqtt/pull/44">the PR</a> I proposed some tests to make sure that Vert.x MQTT client can communicate with remote MQTT servers via SSL and it works fine. Another way to check the SSL/TLS handshake is to take a look at network traffic, and <a href="https://www.wireshark.org/">Wireshark</a> is a great tool for that. Here is how it looks like in <a href="https://www.wireshark.org/">Wireshark</a>:</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/16746106/29253281-198b6a6a-8081-11e7-9d9b-9b8027eac176.png"></p>
+<p>That is all for today!</p>
+<p>Cheers!</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://twitter.com/titantins">Twitter</a></li>
+                            <li><a href="https://github.com/Sammers21">Github</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

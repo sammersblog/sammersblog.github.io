@@ -44,15 +44,8 @@
 <div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>io.vertx<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>vertx-mqtt<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>3.5.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;version&gt;</span>3.5.0.Beta1<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
-
-<span class="nt">&lt;repositories&gt;</span>
-    <span class="nt">&lt;repository&gt;</span>
-      <span class="nt">&lt;id&gt;</span>oss.sonatype.org-snapshot<span class="nt">&lt;/id&gt;</span>
-      <span class="nt">&lt;url&gt;</span>https://oss.sonatype.org/content/repositories/snapshots<span class="nt">&lt;/url&gt;</span>
-    <span class="nt">&lt;/repository&gt;</span>
-<span class="nt">&lt;/repositories&gt;</span>
 </pre></div>
 
 
@@ -60,12 +53,7 @@
 <li>Gradle (in your build.gradle file):</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
-  <span class="n">compile</span> <span class="s1">&#39;io.vertx:vertx-core:3.4.2&#39;</span>
-<span class="o">}</span>
-<span class="n">repositories</span> <span class="o">{</span>
-  <span class="n">maven</span> <span class="o">{</span>
-    <span class="n">url</span> <span class="s2">&quot;https://oss.sonatype.org/content/repositories/snapshots&quot;</span>
-  <span class="o">}</span>
+  <span class="n">compile</span> <span class="s1">&#39;io.vertx:vertx-mqtt:3.5.0.Beta1&#39;</span>
 <span class="o">}</span>
 </pre></div>
 
@@ -81,9 +69,11 @@
 
   <span class="nd">@Override</span>
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">MqttClientOptions</span> <span class="n">options</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MqttClientOptions</span><span class="o">()</span>
+     <span class="n">MqttClientOptions</span> <span class="n">options</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MqttClientOptions</span><span class="o">();</span>
       <span class="c1">// specify broker host</span>
-      <span class="o">.</span><span class="na">setHost</span><span class="o">(</span><span class="s">&quot;iot.eclipse.org&quot;</span><span class="o">);</span>
+      <span class="n">options</span><span class="o">.</span><span class="na">setHost</span><span class="o">(</span><span class="s">&quot;iot.eclipse.org&quot;</span><span class="o">);</span>
+      <span class="c1">// specify max size of message in bytes</span>
+      <span class="n">options</span><span class="o">.</span><span class="na">setMaxMessageSize</span><span class="o">(</span><span class="mi">100_000_000</span><span class="o">);</span>
 
     <span class="n">MqttClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">MqttClient</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">vertx</span><span class="o">,</span> <span class="n">options</span><span class="o">);</span>
 
@@ -115,7 +105,7 @@
 
 <p>If you have completed all steps correctly the result should look like that:</p>
 <p><img alt="" src="http://i.imgur.com/b4yYQJE.gif"></p>
-<p>As the alternative and recommended way to bootstrap Vert.x applications you can use <a href="https://github.com/vert-x3/vertx-maven-starter">vertx-maven-starter</a> or <a href="https://github.com/vert-x3/vertx-gradle-starter">vertx-gradle-starter</a>. For completing this guide I have used the first one. The final source code available <a href="https://github.com/Sammers21/vertx-mqtt-client-example">here</a>. If you would like to learn more about Vert.x MQTT client API then check out the <a href="https://github.com/vert-x3/vertx-mqtt-client/blob/initial-work/src/main/asciidoc/java/index.adoc">full documentation</a>. </p>
+<p>As the alternative and recommended way to bootstrap Vert.x applications you can use <a href="https://github.com/vert-x3/vertx-maven-starter">vertx-maven-starter</a> or <a href="https://github.com/vert-x3/vertx-gradle-starter">vertx-gradle-starter</a>. For completing this guide I have used the first one. The final source code available <a href="https://github.com/Sammers21/vertx-mqtt-client-example">here</a>. If you would like to learn more about Vert.x MQTT client API then check out the <a href="https://github.com/vert-x3/vertx-mqtt-client/blob/initial-work/src/main/asciidoc/java/index.adoc">full documentation</a> and <a href="https://github.com/vert-x3/vertx-examples/tree/3.5.0.beta1/mqtt-examples">more examples</a>. </p>
 <p>Thank you for reading my blog!</p>
 <p>Cheers!</p>
     </div><!-- /.entry-content -->

@@ -31,8 +31,8 @@ DEFAULT_PAGINATION = 10
 DATE_FORMATS = {
     'en': '%a, %d %b %Y'
 }
-LOCALE = ('usa',   # On Windows
-    'en_US',    # On Unix/Linux
+LOCALE = (  # On Windows
+    'en_US'   # On Unix/Linux
     )
 
 # Uncomment following line if you want document-relative URLs when developing

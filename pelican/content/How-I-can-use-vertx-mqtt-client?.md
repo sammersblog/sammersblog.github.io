@@ -12,27 +12,15 @@ If you are using Maven or Gradle, add the following dependency to the dependenci
 <dependency>
     <groupId>io.vertx</groupId>
     <artifactId>vertx-mqtt</artifactId>
-    <version>3.5.0-SNAPSHOT</version>
+    <version>3.5.0.Beta1</version>
 </dependency>
-
-<repositories>
-    <repository>
-      <id>oss.sonatype.org-snapshot</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </repository>
-</repositories>
 ```
 
 * Gradle (in your build.gradle file):
 
 ```groovy
 dependencies {
-  compile 'io.vertx:vertx-core:3.4.2'
-}
-repositories {
-  maven {
-    url "https://oss.sonatype.org/content/repositories/snapshots"
-  }
+  compile 'io.vertx:vertx-mqtt:3.5.0.Beta1'
 }
 ```
 
@@ -50,9 +38,11 @@ public class MainVerticle extends AbstractVerticle {
 
   @Override
   public void start() {
-    MqttClientOptions options = new MqttClientOptions()
+     MqttClientOptions options = new MqttClientOptions();
       // specify broker host
-      .setHost("iot.eclipse.org");
+      options.setHost("iot.eclipse.org");
+      // specify max size of message in bytes
+      options.setMaxMessageSize(100_000_000);
 
     MqttClient client = MqttClient.create(vertx, options);
 
@@ -88,7 +78,7 @@ If you have completed all steps correctly the result should look like that:
 
 ![](http://i.imgur.com/b4yYQJE.gif)
 
-As the alternative and recommended way to bootstrap Vert.x applications you can use [vertx-maven-starter](https://github.com/vert-x3/vertx-maven-starter) or [vertx-gradle-starter](https://github.com/vert-x3/vertx-gradle-starter). For completing this guide I have used the first one. The final source code available [here](https://github.com/Sammers21/vertx-mqtt-client-example). If you would like to learn more about Vert.x MQTT client API then check out the [full documentation](https://github.com/vert-x3/vertx-mqtt-client/blob/initial-work/src/main/asciidoc/java/index.adoc). 
+As the alternative and recommended way to bootstrap Vert.x applications you can use [vertx-maven-starter](https://github.com/vert-x3/vertx-maven-starter) or [vertx-gradle-starter](https://github.com/vert-x3/vertx-gradle-starter). For completing this guide I have used the first one. The final source code available [here](https://github.com/Sammers21/vertx-mqtt-client-example). If you would like to learn more about Vert.x MQTT client API then check out the [full documentation](https://github.com/vert-x3/vertx-mqtt-client/blob/initial-work/src/main/asciidoc/java/index.adoc) and [more examples](https://github.com/vert-x3/vertx-examples/tree/3.5.0.beta1/mqtt-examples). 
 
 Thank you for reading my blog!
 
